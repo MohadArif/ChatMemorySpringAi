@@ -1,0 +1,45 @@
+sever:
+  port: 8080
+
+spring:
+  application:
+    name: springai-chatmemory
+
+# database configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/springaichatmemoryrepo
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: system123
+
+
+
+
+
+
+# spring Ai configuration
+  ai:
+    openai:
+      base-url: https://openrouter.ai/api/v1
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: nvidia/nemotron-3-ultra-550b-a55b:free
+
+    chat:
+      client:
+        enabled: false
+
+
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
